@@ -11,7 +11,11 @@ const App = () => {
   }
 
   return (
-    <section id='section' className={`flex flex-col items-center ${mode === "light" ? "light" : "dark"} ${currentMode.body}`}>
+    <section 
+    id='section' 
+    className = 
+    {`flex flex-col items-center ${mode === "light" ? "light" : "dark"} ${currentMode.body}`}
+    >
       <Header mode={mode} toggleMode={toggleMode} />
     </section>
   )
