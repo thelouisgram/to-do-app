@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+#section{
+  height:100vh;
+}
+
+.light{
+  background-image: url(assets/bg-desktop-light.jpg);
+  background-repeat: no-repeat;
+}
+
+.dark{
+  background-image: url(assets/bg-desktop-dark.jpg);
+  background-repeat: no-repeat;
+}
+
+
+
+
+@media (max-width:470px){
+  .light{
+  height:100vh;
+  background-image: url(assets/bg-mobile-light.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+  .dark{
+  height:100vh;
+  background-image: url(assets/bg-mobile-dark.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+}
