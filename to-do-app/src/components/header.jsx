@@ -3,8 +3,6 @@ import { moon , sun } from '../assets'
 import colors from '../style'
 
 const Header = ({ mode, toggleMode }) => {
-  const currentMode = colors[mode]
-
   return (
     <div 
     className=

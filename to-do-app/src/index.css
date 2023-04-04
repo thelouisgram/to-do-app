@@ -4,8 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 #section{
   height:100vh;
 }
@@ -20,9 +18,6 @@
   background-repeat: no-repeat;
 }
 
-
-
-
 @media (max-width:470px){
   .light{
   height:100vh;
@@ -30,6 +25,7 @@
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
+
   .dark{
   height:100vh;
   background-image: url(assets/bg-mobile-dark.jpg);
