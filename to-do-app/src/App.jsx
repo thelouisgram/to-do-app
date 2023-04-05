@@ -3,16 +3,18 @@ import Header from './components/header'
 import colors from './style'
 import InputComponent from './components/InputComponent'
 import Check from './components/Check'
-import { cross } from './assets'
+import Task from './components/Task'
 
 const App = () => {
-  const [mode, setMode] = useState("light")
+  const [mode, setMode] = useState("dark")
   const currentMode = colors[mode]
+
+  
   const [list, myList] = useState([
     {task: "Go to the Market", complete: true},
-    {task: "Code ", complete: true},
-    {task: "Eat", complete: false},
-    {task: "Fight", complete: false},
+    {task: "Code Frontend Master", complete: true},
+    {task: "Eat Dinner", complete: false},
+    {task: "Fight Thanos", complete: false},
   ])
 
   function toggleMode(){
@@ -24,11 +26,7 @@ const App = () => {
     const borderClass = isLastItem ? "" : ` border-b-[1px] ${currentMode.border}`;
 
     return (
-        <div key={index} className={`flex flex-row items-center justify-between px-6 py-4 w-full ss:w-[480px]
-       ${borderClass} `}>
-          <p className={`flex flex-1 ${currentMode.text} font-normal font-josefin text-[18px]`}>{item.task}</p>
-          <img src={cross} className={ `w-[16px] h-[16px]`}/>
-        </div>
+        <Task key={index} task={item.task} mode={mode} borderClass={borderClass} />
     )
   });
 
