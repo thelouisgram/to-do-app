@@ -3,14 +3,15 @@ const colors = {
           text: "text-[#43414c]",
           background: "bg-[#ffffff]",
           body: "bg-[#fafafa]",
-          check: 'bg-[#e3e3e3]'
-
+          check: 'bg-[#dcdbe0]',
+          border: 'border-[#e6e5ea]'
         },
         dark: {
           text: "text-[#c8cae3]",
           background: "bg-[#25273c]",
           body: "bg-[#181824]",
-          check: 'bg-[#2e3045]'
+          check: 'bg-[#4c4f6b]',
+          border: 'border-[#37394e]'
         },
 }
 

@@ -1,0 +1,34 @@
+import React, {useState} from 'react'
+import colors from '../style'
+import { iconCheck } from '../assets'
+
+const Check = ({mode}) => {
+  const currentMode = colors[mode]
+
+  const [complete, setComplete] = useState(false)
+
+  const incomplete = <div 
+            className = {`rounded-full mr-4 h-[24px] p-[2px] w-[24px] 
+            flex items-center check justify-center relative cursor-pointer ${currentMode.check}`
+            }>
+   <div className={`absolute w-[22px] h-[22px] z-[3] rounded-full ${currentMode.background}`} />
+        </div>
+    
+   const completed = <div className = {`rounded-full mr-4 h-[24px] w-[24px] 
+            flex items-center complete justify-center relative cursor-pointer ${currentMode.check}`
+            }>
+    <img src={iconCheck}/></div>
+
+   function toggleComplete(){
+    setComplete((prev) => !prev)
+   }
+
+  return (
+    <div 
+    onClick = {toggleComplete}>
+        {complete ? completed : incomplete}
+    </div>
+  )
+}
+
+export default Check
