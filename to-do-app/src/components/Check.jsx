@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { iconCheck } from '../assets';
 
-const Check = ({ checked, currentMode }) => {
+const Check = ({ checked, currentMode, handleComplete }) => {
 	const incomplete = (
 		<div
 			className={`rounded-full mr-4 h-[24px] p-[2px] w-[24px] 
@@ -21,10 +21,10 @@ const Check = ({ checked, currentMode }) => {
 	);
 
 	return (
-		<div>
-        {checked ? completed : incomplete}
-    </div>
-    )
+		<div onClick={handleComplete}>
+			{checked ? completed : incomplete}
+		</div>
+	)
 };
 
 export default Check;

@@ -6,6 +6,7 @@ import iconCheck from './icon-check.svg'
 import sun from './icon-sun.svg'
 import cross from './icon-cross.svg'
 import moon from './icon-moon.svg'
+import done from './done.png'
 
 export{
     DesktopBgDark,
@@ -15,5 +16,6 @@ export{
     iconCheck,
     sun,
     cross,
-    moon
+    moon,
+    done
 }

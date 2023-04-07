@@ -60,3 +60,11 @@ input::selection {
   background-attachment: fixed;
 }
 }
+
+.b-t-l:hover{
+  color:#43414c;
+}
+
+.b-t-d:hover{
+  color:#c8cae3;
+}

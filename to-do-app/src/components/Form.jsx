@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { iconCheck } from '../assets';
 import { nanoid } from 'nanoid';
+import {done } from '../assets'
 
 const Form = ({ currentMode, items, setItems }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -56,22 +57,22 @@ const Form = ({ currentMode, items, setItems }) => {
 
 	return (
 		<section
-			className={`flex flex-row justify-between mb-[20px]  px-6 py-2 w-full items-center 
-      ${currentMode.background} ss:w-[480px] rounded-[5px]`}
+			className={`flex flex-row justify-between mb-[20px] h-[70px] px-6 py-4 w-full items-center 
+      ${currentMode.background} ss:w-[520px] rounded-[5px]`}
 		>
-			<form onSubmit={handleSubmit} className="flex flex-1 text-[14px] ss:text-[18px] items-center">
+			<form onSubmit={handleSubmit} className="flex flex-1 text-[18px] items-center">
 				<div onClick={toggleComplete}> {complete ? completed : incomplete} </div>
 				<input
 					placeholder="Create a new todo..."
-					className={`flex flex-1 text-[14px] ss:text-[18px] items-center
+					className={`flex flex-1 text-[18px] items-center
                     ${currentMode.text} ${currentMode.background} font-josefin`}
 					value={inputValue}
 					onKeyPress={handleKeyPress}
 					onChange={handleInputChange}
 				/>
 
-				<button type="submit">
-					<span className={`material-symbols-outlined text-[40px] -mr-[10px] ${currentMode.mark}`}></span>
+				<button type="submit" className='p-0 w-[20px] h-[auto] outline-none'>
+					<img src={done} className='w-[100%]  h-[100%]'/>
 				</button>
 			</form>
 		</section>

@@ -2,19 +2,22 @@ import React from 'react'
 import { cross } from '../assets';
 import Check from './Check'
 
-const Todo = ({ checked, text, borderClass, currentMode }) => {
+const Todo = ({ checked, text, currentMode, item, handleDelete, handleComplete }) => {
   return (
       <div
-          className={`flex flex-row items-center justify-between px-6 py-4 w-full ss:w-[480px] ${borderClass} `}
+          className={`flex flex-row h-[70px] items-center justify-between px-6 py-4 w-full ss:w-[520px] 
+          border-b-[1px] ${ currentMode.border }`}
       >
-          <Check checked={checked} currentMode={currentMode} />
+          <Check item={item} handleComplete={handleComplete} checked={checked} currentMode={currentMode} />
           <p
-            className={`flex flex-1 $ font-normal font-josefin text-[14px] ss:text-[18px] 
+            className={`flex flex-1 $ font-normal font-josefin text-[18px] 
             ${checked ? `line-through ${currentMode.cancel}` : `${currentMode.text}`}`}
           >
               {text}
           </p>
-          <img src={cross} className='w-[16px] h-[16px]' />
+          <button onClick={handleDelete} className='w-[16px] h-[16px] outline-none'>
+            <img src={cross} className='w-[100%] h-[100%] cursor-pointer' />
+          </button>
       </div>
   )
 }

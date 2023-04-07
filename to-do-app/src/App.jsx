@@ -18,11 +18,11 @@ const App = () => {
 		<section
 			id="section"
 			className={`flex flex-col items-center px-6 file:md:px-16
-      ${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
+      		${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
 		>
 			<Header mode={mode} toggleMode={toggleMode} />
       		<Form currentMode={currentMode} items={items} setItems={setItems} />
-			<Todos currentMode={currentMode} items={items} setItems={setItems}/>
+			<Todos mode={mode} currentMode={currentMode} items={items} setItems={setItems}/>
 		</section>
 	);
 };
