@@ -56,11 +56,11 @@ const Form = ({ currentMode, items, setItems }) => {
 
 	return (
 		<section
-			className={`flex flex-row justify-between mb-[20px] p-5 w-full items-center 
+			className={`flex flex-row justify-between mb-[20px]  px-6 py-2 w-full items-center 
       ${currentMode.background} ss:w-[480px] rounded-[5px]`}
 		>
 			<form onSubmit={handleSubmit} className="flex flex-1 text-[14px] ss:text-[18px] items-center">
-				<div onClick={toggleComplete}>{complete ? completed : incomplete}</div>
+				<div onClick={toggleComplete}> {complete ? completed : incomplete} </div>
 				<input
 					placeholder="Create a new todo..."
 					className={`flex flex-1 text-[14px] ss:text-[18px] items-center
@@ -71,7 +71,7 @@ const Form = ({ currentMode, items, setItems }) => {
 				/>
 
 				<button type="submit">
-					<i className={`fa-solid fa-check text-[20px] cursor-pointer ${currentMode.mark}`} />
+					<span className={`material-symbols-outlined text-[40px] -mr-[10px] ${currentMode.mark}`}></span>
 				</button>
 			</form>
 		</section>

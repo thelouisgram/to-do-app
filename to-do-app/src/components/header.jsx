@@ -1,6 +1,5 @@
 import React from 'react';
 import { moon, sun } from '../assets';
-import colors from '../style';
 
 const Header = ({ mode, toggleMode }) => {
 	return (

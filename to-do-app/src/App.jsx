@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Header from './components/header';
 import colors from './style';
-import Task from './components/Task';
+import Todos from './components/Todos';
 import Form from './components/Form';
 
 const App = () => {
 	const [ mode, setMode ] = useState('dark');
 	const currentMode = colors[mode];
 	const [ items, setItems ] = useState([]);
+	
 
 	function toggleMode() {
 		setMode(mode === 'light' ? 'dark' : 'light');
@@ -20,8 +21,8 @@ const App = () => {
       ${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
 		>
 			<Header mode={mode} toggleMode={toggleMode} />
-      <Form currentMode={currentMode} items={items} setItems={setItems} />
-      <Task currentMode={currentMode} items={items} />
+      		<Form currentMode={currentMode} items={items} setItems={setItems} />
+			<Todos currentMode={currentMode} items={items} setItems={setItems}/>
 		</section>
 	);
 };

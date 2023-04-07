@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { iconCheck } from '../assets';
 
 const Check = ({ checked, currentMode }) => {
-   
 	const incomplete = (
 		<div
 			className={`rounded-full mr-4 h-[24px] p-[2px] w-[24px] 
@@ -22,7 +21,7 @@ const Check = ({ checked, currentMode }) => {
 	);
 
 	return (
-        <div>
+		<div>
         {checked ? completed : incomplete}
     </div>
     )

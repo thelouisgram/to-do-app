@@ -9,14 +9,14 @@ const Todo = ({ checked, text, borderClass, currentMode }) => {
       >
           <Check checked={checked} currentMode={currentMode} />
           <p
-              className={`flex flex-1 ${currentMode.text} font-normal 
-            font-josefin text-[14px] ss:text-[18px] ${checked ? `line-through ${currentMode.done}` : ""}`}
+            className={`flex flex-1 $ font-normal font-josefin text-[14px] ss:text-[18px] 
+            ${checked ? `line-through ${currentMode.cancel}` : `${currentMode.text}`}`}
           >
               {text}
           </p>
-          <img src={cross} className={`w-[16px] h-[16px]`} />
+          <img src={cross} className='w-[16px] h-[16px]' />
       </div>
   )
 }
 
-export default Todo
+export default Todo;

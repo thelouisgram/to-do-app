@@ -1,8 +1,8 @@
 import React from 'react';
 import Todo from './Todo';
 
-const Task = ({ currentMode, items }) => {
-  const newList = items.map((item, index) => {
+const Todos = ({ currentMode, items, setItems }) => {
+	 const newList = items.map((item, index) => {
 		return (
 			<Todo
 				key={item.id}
@@ -19,4 +19,4 @@ const Task = ({ currentMode, items }) => {
 	);
 };
 
-export default Task;
+export default Todos;
