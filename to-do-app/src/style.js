@@ -5,7 +5,8 @@ const colors = {
           body: "bg-[#fafafa]",
           check: 'bg-[#dcdbe0]',
           mark: 'text-[#4c4f6b]',
-          border: 'border-[#e6e5ea]'
+          border: 'border-[#e6e5ea]',
+          done: 'text-[#dfdee3]'
         },
         dark: {
           text: "text-[#c8cae3]",
@@ -13,7 +14,8 @@ const colors = {
           body: "bg-[#181824]",
           check: 'bg-[#4c4f6b]',
           mark: 'text-[#4c4f6b]',
-          border: 'border-[#37394e]'
+          border: 'border-[#37394e]',
+          done: 'text-[#43455a]'
         },
 }
 
