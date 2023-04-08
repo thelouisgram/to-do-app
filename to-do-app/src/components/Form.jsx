@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { iconCheck } from '../assets';
 import { nanoid } from 'nanoid';
-import {done } from '../assets'
+import { done } from '../assets';
 
-const Form = ({ currentMode, items, setItems }) => {
-	const [inputValue, setInputValue] = useState('');
+const Form = ({ currentMode, items, setItems, setShowAll, setShowActive, 
+	setShowCompleted, setInputValue, inputValue, setErrorMessage}) => {
 	const [complete, setComplete] = useState(false);
 
 	const incomplete = (
@@ -28,7 +28,10 @@ const Form = ({ currentMode, items, setItems }) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!inputValue) {
-			alert('Please enter a Task.');
+			setErrorMessage(true);
+			setTimeout(() => {
+				setErrorMessage(false);
+			}, 3000);
 			return;
 		}
 		const newItem = {
@@ -39,6 +42,9 @@ const Form = ({ currentMode, items, setItems }) => {
 		setItems([...items, newItem]);
 		setInputValue('');
 		setComplete(false);
+		setShowAll(true);
+		setShowActive(false);
+		setShowCompleted(false);
 	};
 
 	function toggleComplete() {
@@ -60,19 +66,19 @@ const Form = ({ currentMode, items, setItems }) => {
 			className={`flex flex-row justify-between mb-[20px] h-[70px] px-6 py-4 w-full items-center 
       ${currentMode.background} ss:w-[520px] rounded-[5px]`}
 		>
-			<form onSubmit={handleSubmit} className="flex flex-1 text-[18px] items-center">
+			<form onSubmit={handleSubmit} className="flex flex-1 text-[15px] ss:text-[18px] items-center">
 				<div onClick={toggleComplete}> {complete ? completed : incomplete} </div>
 				<input
 					placeholder="Create a new todo..."
-					className={`flex flex-1 text-[18px] items-center
+					className={`flex flex-1 text-[15px] ss:text-[18px] items-center
                     ${currentMode.text} ${currentMode.background} font-josefin`}
 					value={inputValue}
 					onKeyPress={handleKeyPress}
 					onChange={handleInputChange}
 				/>
 
-				<button type="submit" className='p-0 w-[20px] h-[auto] outline-none'>
-					<img src={done} className='w-[100%]  h-[100%]'/>
+				<button type="submit" className="p-0 w-[20px] h-[auto] outline-none">
+					<img src={done} className="w-[100%]  h-[100%]" />
 				</button>
 			</form>
 		</section>

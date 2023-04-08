@@ -1,14 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/header';
 import colors from './style';
 import Todos from './components/Todos';
 import Form from './components/Form';
+import Error from './components/Error';
 
 const App = () => {
-	const [ mode, setMode ] = useState('dark');
+	const [mode, setMode] = useState('dark');
 	const currentMode = colors[mode];
-	const [ items, setItems ] = useState([]);
-	
+	const [items, setItems] = useState([]);
+	const [showAll, setShowAll] = useState(true);
+	const [showActive, setShowActive] = useState(false);
+	const [showCompleted, setShowCompleted] = useState(false);
+	const [allTodos, setAllTodos] = useState(items);
+	const [checkedTodos, setCheckedTodos] = useState([]);
+	const [uncheckedTodos, setUncheckedTodos] = useState([]);
+	const [inputValue, setInputValue] = useState('');
+	const [errorMessage, setErrorMessage] = useState(false);
+
+
+	useEffect(() => {
+		localStorage.setItem('items', JSON.stringify(items));
+	}, [items]);
+
+	useEffect(() => {
+		const items = JSON.parse(localStorage.getItem('items'));
+		if (items) {
+			setItems(items);
+		}
+	}, []);
 
 	function toggleMode() {
 		setMode(mode === 'light' ? 'dark' : 'light');
@@ -21,8 +41,37 @@ const App = () => {
       		${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
 		>
 			<Header mode={mode} toggleMode={toggleMode} />
-      		<Form currentMode={currentMode} items={items} setItems={setItems} />
-			<Todos mode={mode} currentMode={currentMode} items={items} setItems={setItems}/>
+			<Form
+				currentMode={currentMode}
+				items={items}
+				setShowCompleted={setShowCompleted}
+				setShowAll={setShowAll}
+				setShowActive={setShowActive}
+				setItems={setItems}
+				inputValue={inputValue}
+				setInputValue={setInputValue}
+				setErrorMessage={setErrorMessage}
+			/>
+			<Todos
+				mode={mode}
+				currentMode={currentMode}
+				items={items}
+				setItems={setItems}
+				showAll={showAll}
+				setShowAll={setShowAll}
+				showActive={showActive}
+				setShowActive={setShowActive}
+				showCompleted={showCompleted}
+				setShowCompleted={setShowCompleted}
+				allTodos={allTodos}
+				setAllTodos={setAllTodos}
+				checkedTodos={checkedTodos}
+				setCheckedTodos={setCheckedTodos}
+				uncheckedTodos={uncheckedTodos}
+				setUncheckedTodos={setUncheckedTodos}
+			/>
+			{errorMessage && 
+			<Error currentMode={currentMode} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
 		</section>
 	);
 };

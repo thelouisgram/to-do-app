@@ -6,7 +6,8 @@ const colors = {
           check: 'bg-[#dcdbe0]',
           mark: 'text-[#4c4f6b]',
           border: 'border-[#e6e5ea]',
-          cancel: 'text-[#dfdee3]'
+          cancel: 'text-[#959597]',
+          active: 'text-[#5878c5]'
         },
         dark: {
           text: "text-[#c8cae3]",
@@ -15,7 +16,8 @@ const colors = {
           check: 'bg-[#4c4f6b]',
           mark: 'text-[#4c4f6b]',
           border: 'border-[#37394e]',
-          cancel: 'text-[#484a60]'
+          cancel: 'text-[#5a5b77]',
+          active: 'text-[#5878c5]'
         },
 }
 
