@@ -18,18 +18,16 @@ const App = () => {
 	const [inputValue, setInputValue] = useState('');
 	const [errorMessage, setErrorMessage] = useState(false);
 
+	useEffect(() => {
+		const storedItems = JSON.parse(localStorage.getItem('items'));
+		if (storedItems) {
+			setItems(storedItems);
+		}
+	}, []);
 
 	useEffect(() => {
 		localStorage.setItem('items', JSON.stringify(items));
 	}, [items]);
-
-	useEffect(() => {
-		const items = JSON.parse(localStorage.getItem('items'));
-		if (items) {
-			setItems(items);
-		}
-	}, []);
-
 	function toggleMode() {
 		setMode(mode === 'light' ? 'dark' : 'light');
 	}
@@ -75,5 +73,4 @@ const App = () => {
 		</section>
 	);
 };
-
 export default App;
