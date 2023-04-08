@@ -4,6 +4,7 @@ import Check from './Check';
 
 const Todo = ({ checked, text, currentMode, item, handleDelete, handleComplete }) => {
   return (
+    // Individual Todo container
     <div
       className={`flex flex-row h-[70px] items-center justify-between px-6 py-4 w-full ss:w-[520px] 
           border-b-[1px] ${currentMode.border}`}

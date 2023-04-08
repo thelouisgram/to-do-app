@@ -6,28 +6,42 @@ import Form from './components/Form';
 import Error from './components/Error';
 
 const App = () => {
+	// Light & Dark Mode state
 	const [mode, setMode] = useState('dark');
 	const currentMode = colors[mode];
+	// Todo Array
 	const [items, setItems] = useState([]);
+	// For Tabbed Content 
 	const [showAll, setShowAll] = useState(true);
 	const [showActive, setShowActive] = useState(false);
 	const [showCompleted, setShowCompleted] = useState(false);
 	const [allTodos, setAllTodos] = useState(items);
 	const [checkedTodos, setCheckedTodos] = useState([]);
 	const [uncheckedTodos, setUncheckedTodos] = useState([]);
+	// Task form
 	const [inputValue, setInputValue] = useState('');
+	// Error Notification
 	const [errorMessage, setErrorMessage] = useState(false);
 
+	// Local Storage
 	useEffect(() => {
-		const storedItems = JSON.parse(localStorage.getItem('items'));
+		const storedItems = localStorage.getItem('items');
+		const storedMode = localStorage.getItem('mode');
 		if (storedItems) {
-			setItems(storedItems);
+			setItems(JSON.parse(storedItems));
+			setAllTodos(JSON.parse(storedItems));
+		}
+		if (storedMode) {
+			setMode(storedMode);
 		}
 	}, []);
 
 	useEffect(() => {
 		localStorage.setItem('items', JSON.stringify(items));
-	}, [items]);
+		localStorage.setItem('mode', mode);
+	}, [items, mode]);
+
+	// Toggle Light and Dark Mode
 	function toggleMode() {
 		setMode(mode === 'light' ? 'dark' : 'light');
 	}
@@ -36,9 +50,11 @@ const App = () => {
 		<section
 			id="section"
 			className={`flex flex-col items-center px-6 file:md:px-16
-      		${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
+        ${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
 		>
+			{/* Header */}
 			<Header mode={mode} toggleMode={toggleMode} />
+			{/* Form Container */}
 			<Form
 				currentMode={currentMode}
 				items={items}
@@ -50,6 +66,7 @@ const App = () => {
 				setInputValue={setInputValue}
 				setErrorMessage={setErrorMessage}
 			/>
+			{/* Todo Container */}
 			<Todos
 				mode={mode}
 				currentMode={currentMode}
@@ -68,9 +85,11 @@ const App = () => {
 				uncheckedTodos={uncheckedTodos}
 				setUncheckedTodos={setUncheckedTodos}
 			/>
-			{errorMessage && 
-			<Error currentMode={currentMode} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
+			{/* Error Container */}
+			{errorMessage &&
+				<Error currentMode={currentMode} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
 		</section>
 	);
 };
+
 export default App;

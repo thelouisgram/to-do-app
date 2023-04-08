@@ -9,6 +9,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 	showCompleted, setShowCompleted, allTodos, setAllTodos, checkedTodos, setCheckedTodos,
 	uncheckedTodos, setUncheckedTodos }) => {
 
+		// Tabbed Content
 	const handleShowAll = () => {
 		setShowAll(true);
 		setShowActive(false);
@@ -27,6 +28,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 		setShowActive(true);
 	};
 
+	// Update Tabbed Content on change in items array
 	React.useEffect(() => {
 		setAllTodos(items);
 	}, [items]);
@@ -44,6 +46,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 
 	return (
 		<div>
+			{/* TodoList container */}
 			<div className={`rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}`}>
 			{showAll &&
 				<ShowAll allTodos={allTodos}
@@ -64,6 +67,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 							{showActive && <p> {uncheckedTodos.length} item{uncheckedTodos.length > 1 ? 's' : ''} Left</p>}
 							{showCompleted && <p>{checkedTodos.length} item{checkedTodos.length > 1 ? 's': ''} Completed</p>}
 					</div>
+					{/* Tabbed Content Button */}
 					<ul className={`hidden ss:flex  `}>
 						<li
 							onClick={handleShowAll}
@@ -91,7 +95,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 				</div>
 			)}
 			</div>
-
+				{/* Tabbed content buttons for mobile devices */}
 			{allTodos.length !== 0 && (<div className={`ss:hidden flex rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}
 			px-6 py-4 font-josefin text-[15px] justify-center items-center h-[50px] font-[500]`}>
 				

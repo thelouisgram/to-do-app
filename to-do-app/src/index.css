@@ -4,10 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Entire Page height */
 #section{
   min-height:100vh;
 }
 
+/* CheckBox Design  */
 .check:hover{
   background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(250, 87%, 65%), hsl(280, 87%, 65%));
 }
@@ -15,10 +17,12 @@
   background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(250, 87%, 65%), hsl(280, 87%, 65%));
 }
 
+/* Shadow for Todo Container */
 .task-list{
   box-shadow: 3px 12px 50px rgba(0, 0, 0, 0.15);
 }
 
+/* Input form Design */
 input:focus {
   outline: none; 
   border-color: blue; 
@@ -30,7 +34,7 @@ input::selection {
   color: white;
 }
 
-
+/* Background Image for each mode and screen size */
 .light{
   background-image: url(assets/bg-desktop-light.jpg);
   background-repeat: no-repeat;
@@ -61,6 +65,7 @@ input::selection {
 }
 }
 
+/* Bottom Div in Todo Container text design */
 .b-t-l:hover{
   color:#43414c;
 }
@@ -69,6 +74,7 @@ input::selection {
   color:#c8cae3;
 }
 
+/* Error design and animation */
 .error {
   position: absolute;
   top: -50%;

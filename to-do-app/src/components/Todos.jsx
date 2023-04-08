@@ -19,6 +19,7 @@ const Todos = ({
 	uncheckedTodos,
 	setUncheckedTodos
 }) => {
+	// function to change status of completed tasks
 	const handleComplete = (id) => {
 		setItems(
 			items.map((todo) => {
@@ -30,6 +31,7 @@ const Todos = ({
 		);
 	};
 
+	// function to delete all completed task
 	const handleClearCompleted = () => {
 		const incompleteList = items.filter((todo) => todo.checked === false);
 		setItems(incompleteList);
@@ -38,6 +40,7 @@ const Todos = ({
 		setShowCompleted(false);
 	};
 
+	// function to delete individual task
 	const handleDelete = (id) => {
 		setItems(items.filter((todo) => todo.id !== id));
 	};
