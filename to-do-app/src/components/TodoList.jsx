@@ -47,7 +47,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 	return (
 		<div>
 			{/* TodoList container */}
-			<div className={`rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}`}>
+			<div className={`rounded-[5px] w-full ss:w-[520px] mb-[20px] task-list ${currentMode.background}`}>
 			{showAll &&
 				<ShowAll allTodos={allTodos}
 					handleComplete={handleComplete} handleDelete={handleDelete} currentMode={currentMode} />}
@@ -57,7 +57,6 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 			{showCompleted &&
 				<ShowCompleted checkedTodos={checkedTodos}
 					handleComplete={handleComplete} handleDelete={handleDelete} currentMode={currentMode} />}
-			{allTodos.length !== 0 && (
 				<div
 					className={`px-6 py-4 
 					font-josefin text-[15px]  justify-between items-center h-[50px] font-[500] flex`}
@@ -93,10 +92,9 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 						Clear Completed
 					</p>
 				</div>
-			)}
 			</div>
 				{/* Tabbed content buttons for mobile devices */}
-			{allTodos.length !== 0 && (<div className={`ss:hidden flex rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}
+			<div className={`ss:hidden flex rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}
 			px-6 py-4 font-josefin text-[15px] justify-center items-center h-[50px] font-[500]`}>
 				
 					<ul className={`flex justify-center `}>
@@ -116,7 +114,7 @@ const TodoList = ({ currentMode, items, handleClearCompleted, mode,
 							{`cursor-pointer ${showCompleted ? currentMode.active : currentMode.cancel}
 							${mode === 'light' ? 'b-t-l' : 'b-t-d'}`}>Completed</li>
 					</ul>
-			</div>)}
+			</div>
 		</div>
 	);
 };
