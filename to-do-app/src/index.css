@@ -4,9 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Entire Page height */
-#section{
-  min-height:100vh;
+:root{
+  height:100vh;
 }
 
 /* CheckBox Design  */
@@ -36,12 +35,14 @@ input::selection {
 
 /* Background Image for each mode and screen size */
 .light{
+  min-height:100vh;
   background-image: url(assets/bg-desktop-light.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 .dark{
+  min-height:100vh;
   background-image: url(assets/bg-desktop-dark.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -49,7 +50,7 @@ input::selection {
 
 @media (max-width:470px){
   .light{
-  height:100vh;
+  min-height: 100vh;
   background-image: url(assets/bg-mobile-light.jpg);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -57,7 +58,7 @@ input::selection {
 }
 
   .dark{
-  height:100vh;
+  min-height: 100vh;
   background-image: url(assets/bg-mobile-dark.jpg);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -90,7 +91,7 @@ input::selection {
     opacity: 0;
   }
   to {
-    top: 7%;
+    top: 14px;
     opacity: 1;
   }
 }

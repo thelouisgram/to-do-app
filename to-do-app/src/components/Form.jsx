@@ -3,9 +3,9 @@ import { iconCheck } from '../assets';
 import { nanoid } from 'nanoid';
 import { done } from '../assets';
 
-const Form = ({ currentMode, items, setItems, setShowAll, setShowActive, 
-	setShowCompleted, setInputValue, inputValue, setErrorMessage}) => {
-		// useState for Form checkbox
+const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
+	setShowCompleted, setInputValue, inputValue, setError, setErrorMessage}) => {
+	// useState for Form checkbox
 	const [complete, setComplete] = useState(false);
 
 	// CheckBox design
@@ -29,19 +29,28 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 
 	// Submit Function
 	const handleSubmit = (event) => {
-		event.preventDefault();
-		if (!inputValue) {
-			setErrorMessage(true);
-			setTimeout(() => {
-				setErrorMessage(false);
-			}, 3000);
-			return;
-		}
 		const newItem = {
 			id: nanoid(),
 			text: inputValue,
-			checked: complete
-		};
+			checked: complete}
+		event.preventDefault();
+		if (!inputValue) {
+			setError(true);
+			setErrorMessage('Please enter a Task!')
+			setTimeout(() => {
+				setError(false);
+			}, 2000);
+			return;
+		}
+		else if(items.some((items) => items.text === newItem.text )){
+			setError(true);
+			setErrorMessage(`Task: ${newItem.text} already exists!`);
+			setTimeout(() => {
+				setError(false);
+			}, 2000);
+			return;
+		}
+		else{
 		// updating items array
 		setItems([...items, newItem]);
 		setInputValue('');
@@ -49,6 +58,7 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		setShowAll(true);
 		setShowActive(false);
 		setShowCompleted(false);
+	}
 	};
 
 	// Function to toggle checkbox

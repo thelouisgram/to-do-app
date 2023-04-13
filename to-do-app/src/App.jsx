@@ -21,7 +21,9 @@ const App = () => {
 	// Task form
 	const [inputValue, setInputValue] = useState('');
 	// Error Notification
-	const [errorMessage, setErrorMessage] = useState(false);
+	const [error, setError] = useState(false);
+	// Error Message
+	const [errorMessage, setErrorMessage] = useState('')
 
 	// Local Storage
 	useEffect(() => {
@@ -49,7 +51,7 @@ const App = () => {
 	return (
 		<section
 			id="section"
-			className={`flex flex-col items-center px-6 file:md:px-16
+			className={`flex flex-col  items-center h-[100%] px-6 
         ${mode === 'light' ? 'light' : 'dark'} ${currentMode.body}`}
 		>
 			{/* Header */}
@@ -64,6 +66,7 @@ const App = () => {
 				setItems={setItems}
 				inputValue={inputValue}
 				setInputValue={setInputValue}
+				setError={setError}
 				setErrorMessage={setErrorMessage}
 			/>
 			{/* Todo Container */}
@@ -86,8 +89,8 @@ const App = () => {
 				setUncheckedTodos={setUncheckedTodos}
 			/>
 			{/* Error Container */}
-			{errorMessage &&
-				<Error currentMode={currentMode} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
+			{error &&
+				<Error currentMode={currentMode} errorMessage={errorMessage} />}
 		</section>
 	);
 };

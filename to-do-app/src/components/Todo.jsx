@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { cross } from '../assets';
 import Check from './Check';
 
-const Todo = ({ checked, text, currentMode, item, handleDelete, handleComplete }) => {
+const Todo = ({item, checked, text, currentMode, handleDelete, handleComplete }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleHover = () => {

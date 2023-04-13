@@ -1,16 +1,12 @@
 import React from 'react';
-import { cross } from '../assets';
 
-const Error = ({ currentMode, setErrorMessage }) => {
+const Error = ({ currentMode, errorMessage }) => {
 	return (
         // Error Container
-        <div className={`w-[250px] h-auto px-4 py-4 error rounded-[5px] font-josefin 
-        text-[18px] ${currentMode.background}  ${currentMode.text}`}>
-            {/* Cancel Error Notification */}
-            <div onClick={(prev) => setErrorMessage(!prev)}
-            className='flex justify-end cursor-pointer'><img src={cross}  className='h-[12px] w-[12px] '/></div>
+        <div className={`w-full h-auto py-[2px] fixed top-0 left-0 error  font-josefin 
+        text-[16px] ${currentMode.background}  ${currentMode.text}`}>
             {/* Error Notification Content */}
-			<p className={`flex items-center justify-center `}>Please enter a task!</p>
+			<p className={`flex items-center justify-center `}>{errorMessage}</p>
 		</div>
 	);
 };
