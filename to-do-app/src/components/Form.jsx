@@ -61,7 +61,9 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 			setShowActive(false);
 			setShowCompleted(false);
 			setNotification(true);
-			setNotificationMessage(`Task: "${newItem.text}" added successfully!`)
+			{newItem.text.length < 30 ? 
+				setNotificationMessage(`Task: "${newItem.text}" added successfully!`) :
+				setNotificationMessage(`Task added successfully!`)}
 			setTimeout(() => {
 				setNotification(false);
 			}, 3000);
