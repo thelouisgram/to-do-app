@@ -75,9 +75,9 @@ input::selection {
   color:#c8cae3;
 }
 
-/* Error design and animation */
-.error {
-  position: absolute;
+/* Notification design and animation */
+.notification {
+  position: fixed;
   top: -50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -91,7 +91,7 @@ input::selection {
     opacity: 0;
   }
   to {
-    top: 14px;
+    top: 16px;
     opacity: 1;
   }
 }

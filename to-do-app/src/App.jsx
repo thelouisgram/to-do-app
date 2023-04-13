@@ -3,7 +3,7 @@ import Header from './components/header';
 import colors from './style';
 import Todos from './components/Todos';
 import Form from './components/Form';
-import Error from './components/Error';
+import Notification from './components/Notification';
 
 const App = () => {
 	// Light & Dark Mode state
@@ -20,10 +20,10 @@ const App = () => {
 	const [uncheckedTodos, setUncheckedTodos] = useState([]);
 	// Task form
 	const [inputValue, setInputValue] = useState('');
-	// Error Notification
-	const [error, setError] = useState(false);
-	// Error Message
-	const [errorMessage, setErrorMessage] = useState('')
+	// Notification
+	const [notification, setNotification] = useState(false);
+	// Notification Message
+	const [notificationMessage, setNotificationMessage] = useState('')
 
 	// Local Storage
 	useEffect(() => {
@@ -66,8 +66,8 @@ const App = () => {
 				setItems={setItems}
 				inputValue={inputValue}
 				setInputValue={setInputValue}
-				setError={setError}
-				setErrorMessage={setErrorMessage}
+				setNotification={setNotification}
+				setNotificationMessage={setNotificationMessage}
 			/>
 			{/* Todos Container */}
 			<Todos
@@ -87,10 +87,12 @@ const App = () => {
 				setCheckedTodos={setCheckedTodos}
 				uncheckedTodos={uncheckedTodos}
 				setUncheckedTodos={setUncheckedTodos}
+				setNotification={setNotification}
+				setNotificationMessage={setNotificationMessage}
 			/>
-			{/* Error Container */}
-			{error &&
-				<Error currentMode={currentMode} errorMessage={errorMessage} />}
+			{/* Notification Container */}
+			{notification &&
+				<Notification currentMode={currentMode} notificationMessage={notificationMessage} />}
 		</section>
 	);
 };

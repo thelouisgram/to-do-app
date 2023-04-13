@@ -17,7 +17,9 @@ const Todos = ({
 	checkedTodos,
 	setCheckedTodos,
 	uncheckedTodos,
-	setUncheckedTodos
+	setUncheckedTodos,
+	setNotification,
+	setNotificationMessage
 }) => {
 	// function to change status of completed tasks
 	const handleComplete = (id) => {
@@ -38,11 +40,21 @@ const Todos = ({
 		setShowAll(true);
 		setShowActive(false);
 		setShowCompleted(false);
+		setNotification(true);
+		setNotificationMessage('All completed Tasks cleared Successfully!')
+		setTimeout(() => {
+			setNotification(false);
+		}, 3000);
 	};
 
 	// function to delete individual task
 	const handleDelete = (id) => {
 		setItems(items.filter((todo) => todo.id !== id));
+		setNotification(true);
+		setNotificationMessage('Task deleted Successfully!')
+		setTimeout(() => {
+			setNotification(false);
+		}, 3000);
 	};
 
 	return (

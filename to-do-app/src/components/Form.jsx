@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import { done } from '../assets';
 
 const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
-	setShowCompleted, setInputValue, inputValue, setError, setErrorMessage}) => {
+	setShowCompleted, setInputValue, inputValue, setNotification, setNotificationMessage }) => {
 	// useState for Form checkbox
 	const [complete, setComplete] = useState(false);
 
@@ -32,34 +32,40 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		const newItem = {
 			id: nanoid(),
 			text: inputValue,
-			checked: complete}
+			checked: complete
+		}
 		event.preventDefault();
 		if (!inputValue) {
-			setError(true);
-			setErrorMessage('Please enter a new Task!')
+			setNotification(true);
+			setNotificationMessage('Please enter a new Task!')
 			setTimeout(() => {
-				setError(false);
-			}, 2000);
+				setNotification(false);
+			}, 3000);
 			return;
 		}
-		else if(items.some((items) => items.text === newItem.text )){
-			setError(true);
-			setErrorMessage(`Task: ${newItem.text} already exists!`);
+		else if (items.some((items) => items.text === newItem.text)) {
+			setNotification(true);
+			setNotificationMessage(`Task: ${newItem.text} already exists!`);
 			setTimeout(() => {
-				setError(false);
-			}, 2000);
+				setNotification(false);
+			}, 3000);
 			setInputValue('');
 			return;
 		}
-		else{
-		// updating items array
-		setItems([...items, newItem]);
-		setInputValue('');
-		setComplete(false);
-		setShowAll(true);
-		setShowActive(false);
-		setShowCompleted(false);
-	}
+		else {
+			// updating items array
+			setItems([...items, newItem]);
+			setInputValue('');
+			setComplete(false);
+			setShowAll(true);
+			setShowActive(false);
+			setShowCompleted(false);
+			setNotification(true);
+			setNotificationMessage(`Task: ${newItem.text} added successfully!`)
+			setTimeout(() => {
+				setNotification(false);
+			}, 3000);
+		}
 	};
 
 	// Function to toggle checkbox
