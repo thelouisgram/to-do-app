@@ -48,6 +48,7 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 			setTimeout(() => {
 				setError(false);
 			}, 2000);
+			setInputValue('');
 			return;
 		}
 		else{

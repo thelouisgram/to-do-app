@@ -69,7 +69,7 @@ const App = () => {
 				setError={setError}
 				setErrorMessage={setErrorMessage}
 			/>
-			{/* Todo Container */}
+			{/* Todos Container */}
 			<Todos
 				mode={mode}
 				currentMode={currentMode}
