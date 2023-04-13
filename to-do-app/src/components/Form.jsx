@@ -36,7 +36,7 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		event.preventDefault();
 		if (!inputValue) {
 			setError(true);
-			setErrorMessage('Please enter a Task!')
+			setErrorMessage('Please enter a new Task!')
 			setTimeout(() => {
 				setError(false);
 			}, 2000);

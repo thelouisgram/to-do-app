@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoList from './TodoList';
+import TodoSection from './TodoSection';
 
 const Todos = ({
 	currentMode,
@@ -47,7 +47,7 @@ const Todos = ({
 
 	return (
 		<section className={`rounded-[5px] w-full ss:w-[520px] mb-[20px] `}>
-			<TodoList
+			<TodoSection
 				currentMode={currentMode}
 				items={items}
 				handleComplete={handleComplete}
