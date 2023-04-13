@@ -45,7 +45,9 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		}
 		else if (items.some((items) => items.text === newItem.text)) {
 			setNotification(true);
-			setNotificationMessage(`Task: "${newItem.text}" already exists!`);
+			{newItem.text.length < 30 ? 
+				setNotificationMessage(`Task: "${newItem.text}" already exists!`) :
+				setNotificationMessage(`Task already exists!`)}
 			setTimeout(() => {
 				setNotification(false);
 			}, 3000);
