@@ -91,7 +91,7 @@ input::selection {
     opacity: 0;
   }
   to {
-    top: 16px;
-    opacity: 1;
+    top:16px;
+  opacity: 1;
   }
 }

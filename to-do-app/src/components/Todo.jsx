@@ -21,7 +21,7 @@ const Todo = ({item, checked, text, currentMode, handleDelete, handleComplete })
     >
       <Check item={item} handleComplete={handleComplete} checked={checked} currentMode={currentMode} />
       <p
-        className={`flex flex-1 $ font-normal font-josefin text-[15px] ss:text-[18px] 
+        className={`flex flex-1 $ font-normal font-josefin text-[15px] ss:text-[18px] overflow-hidden
             ${checked ? `line-through ${currentMode.cancel}` : `${currentMode.text}`}`}
       >
         {text}
