@@ -45,7 +45,7 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		}
 		else if (items.some((items) => items.text === newItem.text)) {
 			setNotification(true);
-			setNotificationMessage(`Task: ${newItem.text} already exists!`);
+			setNotificationMessage(`Task: "${newItem.text}" already exists!`);
 			setTimeout(() => {
 				setNotification(false);
 			}, 3000);
@@ -61,7 +61,7 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 			setShowActive(false);
 			setShowCompleted(false);
 			setNotification(true);
-			setNotificationMessage(`Task: ${newItem.text} added successfully!`)
+			setNotificationMessage(`Task: "${newItem.text}" added successfully!`)
 			setTimeout(() => {
 				setNotification(false);
 			}, 3000);
