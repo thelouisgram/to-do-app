@@ -75,7 +75,7 @@ input::selection {
   color:#c8cae3;
 }
 
-/* Notification design and animation */
+/* Error design and animation */
 .notification {
   position: fixed;
   top: -50%;
