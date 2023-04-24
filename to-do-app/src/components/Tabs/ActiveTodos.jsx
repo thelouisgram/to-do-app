@@ -1,8 +1,8 @@
 import React from 'react';
-import Todo from './Todo';
+import Todo from '../Todo';
 
-const ShowAll = ({ handleComplete, handleDelete, currentMode, allTodos }) => {
-    const newList = allTodos.map((item) => {
+const ActiveTodos = ({ handleComplete, handleDelete, currentMode, uncheckedTodos }) => {
+    const newList = uncheckedTodos.map((item) => {
         return (
             <Todo
                 key={item.id}
@@ -19,4 +19,4 @@ const ShowAll = ({ handleComplete, handleDelete, currentMode, allTodos }) => {
     return <div>{newList}</div>;
 };
 
-export default ShowAll;
+export default ActiveTodos;

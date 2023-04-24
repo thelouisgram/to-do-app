@@ -1,26 +1,13 @@
-import React from 'react';
-import TodoSection from './TodoSection';
+import React, {useState} from 'react';
+import AllTodos from './Tabs/AllTodos';
+import ActiveTodos from './Tabs/ActiveTodos';
+import CompletedTodos from './Tabs/CompletedTodos';
+import Tab from './Tab';
 
 const Todos = ({
-	currentMode,
-	items,
-	setItems,
-	mode,
-	showAll,
-	setShowAll,
-	showActive,
-	setShowActive,
-	showCompleted,
-	setShowCompleted,
-	allTodos,
-	setAllTodos,
-	checkedTodos,
-	setCheckedTodos,
-	uncheckedTodos,
-	setUncheckedTodos,
-	setNotification,
-	setNotificationMessage
-}) => {
+	currentMode, items, setItems, mode, setNotification, setNotificationMessage, 
+	currentTab, setCurrentTab, pagination}) => {
+
 	// function to change status of completed tasks
 	const handleComplete = (id) => {
 		setItems(
@@ -37,11 +24,9 @@ const Todos = ({
 	const handleClearCompleted = () => {
 		const incompleteList = items.filter((todo) => todo.checked === false);
 		setItems(incompleteList);
-		setShowAll(true);
-		setShowActive(false);
-		setShowCompleted(false);
+		setCurrentTab(0);
 		setNotification(true);
-		setNotificationMessage('All completed Tasks cleared Successfully!')
+		setNotificationMessage('All completed Tasks cleared Successfully!');
 		setTimeout(() => {
 			setNotification(false);
 		}, 3000);
@@ -51,34 +36,110 @@ const Todos = ({
 	const handleDelete = (id) => {
 		setItems(items.filter((todo) => todo.id !== id));
 		setNotification(true);
-		setNotificationMessage('Task deleted Successfully!')
+		setNotificationMessage('Task deleted Successfully!');
 		setTimeout(() => {
 			setNotification(false);
 		}, 3000);
 	};
 
+	// For Tabbed Content
+	const [ checkedTodos, setCheckedTodos ] = useState([]);
+	const [ uncheckedTodos, setUncheckedTodos ] = useState([]);
+
+	// Update Tabbed Content on change in items array
+	React.useEffect(
+		() => {
+			const checkedTodos = items.filter((item) => item.checked);
+			setCheckedTodos(checkedTodos);
+		},
+		[ items ]
+	);
+
+	React.useEffect(
+		() => {
+			const uncheckedTodos = items.filter((item) => !item.checked);
+			setUncheckedTodos(uncheckedTodos);
+		},
+		[ items ]
+	);
+
+	const tab = pagination.map((tab, index) => {
+		return (
+			<Tab
+				key={index} tab={tab} pagination={pagination} setCurrentTab={setCurrentTab} 
+				index={index} mode={mode} currentMode={currentMode} currentTab={currentTab}
+			/>
+		);
+	});
+	
+
 	return (
 		<section className={`rounded-[5px] w-full ss:w-[520px] mb-[20px] `}>
-			<TodoSection
-				currentMode={currentMode}
-				items={items}
-				handleComplete={handleComplete}
-				handleDelete={handleDelete}
-				handleClearCompleted={handleClearCompleted}
-				mode={mode}
-				showAll={showAll}
-				setShowAll={setShowAll}
-				showActive={showActive}
-				setShowActive={setShowActive}
-				showCompleted={showCompleted}
-				setShowCompleted={setShowCompleted}
-				allTodos={allTodos}
-				setAllTodos={setAllTodos}
-				checkedTodos={checkedTodos}
-				setCheckedTodos={setCheckedTodos}
-				uncheckedTodos={uncheckedTodos}
-				setUncheckedTodos={setUncheckedTodos}
-			/>
+			{/* TodoSection container */}
+			<div className={`rounded-[5px] w-full ss:w-[520px] mb-[20px] task-list ${currentMode.background}`}>
+				{currentTab === 0 && (
+					<AllTodos
+						items={items}
+						handleComplete={handleComplete}
+						handleDelete={handleDelete}
+						currentMode={currentMode}
+					/>
+				)}
+				{currentTab === 1 && (
+					<ActiveTodos
+						uncheckedTodos={uncheckedTodos}
+						handleComplete={handleComplete}
+						handleDelete={handleDelete}
+						currentMode={currentMode}
+					/>
+				)}
+				{currentTab === 2 && (
+					<CompletedTodos
+						checkedTodos={checkedTodos}
+						handleComplete={handleComplete}
+						handleDelete={handleDelete}
+						currentMode={currentMode}
+					/>
+				)}
+				<div
+					className={`px-6 py-4 
+					font-josefin text-[15px]  justify-between items-center h-[50px] font-[500] flex`}
+				>
+					<div className={`${currentMode.cancel} `}>
+						{currentTab === 0 && (
+							<p>
+								{items.length} item{items.length > 1 ? 's' : ''} Left
+							</p>
+						)}
+						{currentTab === 1 && (
+							<p>
+								{uncheckedTodos.length} item{uncheckedTodos.length > 1 ? 's' : ''} Left
+							</p>
+						)}
+						{currentTab === 2 && (
+							<p>
+								{checkedTodos.length} item{checkedTodos.length > 1 ? 's' : ''} Completed
+							</p>
+						)}
+					</div>
+					{/* Tabbed Content Button */}
+					<div className="hidden md:flex">{tab}</div>
+					<p
+						onClick={handleClearCompleted}
+						className={`${currentMode.cancel} 
+						cursor-pointer ${mode === 'light' ? 'b-t-l' : 'b-t-d'} `}
+					>
+						Clear Completed
+					</p>
+				</div>
+			</div>
+			{/* Tabbed content buttons for mobile devices */}
+			<div
+				className={`ss:hidden flex rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}
+			px-6 py-4 font-josefin text-[15px] justify-center items-center h-[50px] font-[500]`}
+			>
+				{tab}
+			</div>
 		</section>
 	);
 };

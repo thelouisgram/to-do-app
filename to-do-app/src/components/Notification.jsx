@@ -1,13 +1,18 @@
 import React from 'react';
 
-const Notification = ({ currentMode, notificationMessage }) => {
+const Notification = ({notification, currentMode, notificationMessage }) => {
     return (
-        // Notification Container
-        <div className={`w-full h-[32px] text-center justify-center flex items-center px-4 fixed top-auto notification overflow-hidden font-josefin 
-        text-[16px] ${currentMode.background}  ${currentMode.text}`}>
-            {/*  Notification Content */}
-            <p className={`flex items-center justify-center `}>{notificationMessage}</p>
-        </div>
+        <>
+        {notification &&
+                <div className={`w-full h-auto min-h-[32px] text-center justify-center flex 
+                items-center px-4 py-1 fixed font-josefin text-[16px] top-0 left-0 
+                ${currentMode.background} ${currentMode.text}`}>
+                    {/* Notification Content */}
+                    <p className={`flex items-center justify-center`}>{notificationMessage}</p>
+                </div>
+
+ }
+        </>
     );
 };
 

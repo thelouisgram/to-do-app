@@ -3,19 +3,11 @@ import { cross } from '../assets';
 import Check from './Check';
 
 const Todo = ({item, checked, text, currentMode, handleDelete, handleComplete }) => {
-  const [isHovering, setIsHovering] = useState(false);
 
-  const handleHover = () => {
-    setIsHovering(true);
-  }
-
-  const handleLeave = () => {
-    setIsHovering(false);
-  }
+ 
   return (
     // Individual Todo container
     <div
-      onMouseEnter={handleHover} onMouseLeave={handleLeave}
       className={`flex flex-row h-[70px] items-center justify-between px-6 py-4 w-full ss:w-[520px] 
           border-b-[1px] ${currentMode.border} `}
     >
@@ -26,7 +18,7 @@ const Todo = ({item, checked, text, currentMode, handleDelete, handleComplete })
       >
         {text}
       </p>
-      <button onClick={handleDelete} className={`w-[16px] h-[16px] outline-none ${isHovering ? 'flex' : 'hidden'} `}>
+      <button onClick={handleDelete} className={`w-[16px] h-[16px] outline-none `}>
         <img src={cross} className="w-[100%] h-[100%] cursor-pointer" />
       </button>
     </div>

@@ -3,8 +3,8 @@ import { iconCheck } from '../assets';
 import { nanoid } from 'nanoid';
 import { done } from '../assets';
 
-const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
-	setShowCompleted, setInputValue, inputValue, setNotification, setNotificationMessage }) => {
+const Form = ({ currentMode, items, setItems, setCurrentTab,
+	 setInputValue, inputValue, setNotification, setNotificationMessage }) => {
 	// useState for Form checkbox
 	const [complete, setComplete] = useState(false);
 
@@ -27,6 +27,16 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		</div>
 	);
 
+
+	const Refresh = () => {
+		setNotification(true);
+		setTimeout(() => {
+			setNotification(false);
+		}, 3000);
+		setInputValue('');
+		setComplete(false)
+	}
+
 	// Submit Function
 	const handleSubmit = (event) => {
 		const newItem = {
@@ -36,39 +46,21 @@ const Form = ({ currentMode, items, setItems, setShowAll, setShowActive,
 		}
 		event.preventDefault();
 		if (!inputValue) {
-			setNotification(true);
 			setNotificationMessage('Please enter a new Task!')
-			setTimeout(() => {
-				setNotification(false);
-			}, 3000);
+			Refresh()
 			return;
 		}
 		else if (items.some((items) => items.text === newItem.text)) {
-			setNotification(true);
-			{newItem.text.length < 20 ? 
-				setNotificationMessage(`Task: "${newItem.text}" already exists!`) :
-				setNotificationMessage(`Task already exists!`)}
-			setTimeout(() => {
-				setNotification(false);
-			}, 3000);
-			setInputValue('');
+			setNotificationMessage(`Task: "${newItem.text}" already exists!`)
+			Refresh()
 			return;
 		}
 		else {
 			// updating items array
 			setItems([...items, newItem]);
-			setInputValue('');
-			setComplete(false);
-			setShowAll(true);
-			setShowActive(false);
-			setShowCompleted(false);
-			setNotification(true);
-			{newItem.text.length < 20 ? 
-				setNotificationMessage(`Task: "${newItem.text}" added successfully!`) :
-				setNotificationMessage(`Task added successfully!`)}
-			setTimeout(() => {
-				setNotification(false);
-			}, 3000);
+			setCurrentTab(0)
+			setNotificationMessage(`Task: "${newItem.text}" added successfully!`)
+			Refresh()
 		}
 	};
 
