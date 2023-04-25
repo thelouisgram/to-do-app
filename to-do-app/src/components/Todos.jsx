@@ -34,13 +34,15 @@ const Todos = ({
 
 	// function to delete individual task
 	const handleDelete = (id) => {
+		const deletedTodo = items.find(todo => todo.id === id);
 		setItems(items.filter((todo) => todo.id !== id));
 		setNotification(true);
-		setNotificationMessage('Task deleted Successfully!');
+		setNotificationMessage(`Task "${deletedTodo.text}" deleted Successfully!`);
 		setTimeout(() => {
 			setNotification(false);
 		}, 3000);
 	};
+
 
 	// For Tabbed Content
 	const [ checkedTodos, setCheckedTodos ] = useState([]);

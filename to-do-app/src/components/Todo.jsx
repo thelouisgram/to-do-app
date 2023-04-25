@@ -1,12 +1,21 @@
 import React, {useState} from 'react';
 import { cross } from '../assets';
 import Check from './Check';
+import {motion, AnimatePresence, easeInOut} from 'framer-motion'
+import { nanoid } from 'nanoid';
 
 const Todo = ({item, checked, text, currentMode, handleDelete, handleComplete }) => {
 
  
   return (
     // Individual Todo container
+    <AnimatePresence mode='wait'>
+      <motion.div
+      key={nanoid}
+      initial={{opacity: 0, y:-20}}
+      animate={{opacity:1, y:0}}
+      transition={{ease:easeInOut, duration:0.5,}}
+      >
     <div
       className={`flex flex-row h-[70px] items-center justify-between px-6 py-4 w-full ss:w-[520px] 
           border-b-[1px] ${currentMode.border} `}
@@ -22,6 +31,8 @@ const Todo = ({item, checked, text, currentMode, handleDelete, handleComplete })
         <img src={cross} className="w-[100%] h-[100%] cursor-pointer" />
       </button>
     </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
