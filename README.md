@@ -3,7 +3,7 @@
 This is a solution to the [Todo App challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW/hub/todo-app-AmqPxeRjL).
 Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-<img src="https://github.com/thelouisgram/to-do-app/blob/main/to-do-app/src/assets/Challange.webp">
+<img src="https://github.com/thelouisgram/to-do-app/blob/main/src/assets/Challange.webp">
 
 
 ## Table of contents
@@ -39,12 +39,12 @@ Users should be able to:
 
                 This is a desktop View.
                  
-<img src="https://github.com/thelouisgram/to-do-app/blob/main/to-do-app/src/assets/to-do-app-desktop-view.png">
+<img src="https://github.com/thelouisgram/to-do-app/blob/main/src/assets/to-do-app-desktop-view.png">
 
                  This is a mobile view.
                  
   <p align="center">
-   <img src="https://github.com/thelouisgram/to-do-app/blob/main/to-do-app/src/assets/to-do-app-mobile-view.png" height="500px">
+   <img src="https://github.com/thelouisgram/to-do-app/blob/main/src/assets/to-do-app-mobile-view.png" height="500px">
   </p>
   
 ### Links
