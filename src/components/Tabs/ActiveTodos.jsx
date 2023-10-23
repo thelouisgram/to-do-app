@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import Todo from '../Todo';
+import Todo from '../shared/Todo';
 
-const ActiveTodos = ({ handleComplete, handleDelete, currentMode, uncheckedTodos }) => {
+const ActiveTodos = ({ handleComplete, handleDelete, currentMode, items, setItems, uncheckedTodos }) => {
     const newList = uncheckedTodos.map((item) => {
         return (
             <Todo
@@ -9,6 +10,8 @@ const ActiveTodos = ({ handleComplete, handleDelete, currentMode, uncheckedTodos
                 checked={item.checked}
                 text={item.text}
                 currentMode={currentMode}
+                items={items}
+                setItems={setItems}
                 item={item}
                 handleComplete={() => handleComplete(item.id)}
                 handleDelete={() => handleDelete(item.id)}
