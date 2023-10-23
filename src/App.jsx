@@ -1,88 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/header';
-import colors from './style';
-import Todos from './components/Todos';
-import Form from './components/Form';
-import { Toaster } from 'sonner';
+import React, { useState, useEffect } from "react";
+import colors from "./style";
+import { Toaster } from "sonner";
+import Header from "./components/body/header";
+import Login from "./components/pages/login";
+import Signup from "./components/pages/signup";
+import Main from "./components/pages/Main";
 
 const App = () => {
-	// Light & Dark Mode state
-	const [mode, setMode] = useState('dark');
-	const currentMode = colors[mode];
+  // Light & Dark Mode state
+  const [mode, setMode] = useState("dark");
+  // const [user, setUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState("login");
+  const currentMode = colors[mode];
 
-	// Todo Array
-	const [items, setItems] = useState([]);
+  // Todo Array
+  const [items, setItems] = useState([]);
 
-	// Task form
-	const [inputValue, setInputValue] = useState('');
+  // Local Storage
+  useEffect(() => {
+    const storedItems = localStorage.getItem("items");
+    const storedMode = localStorage.getItem("mode");
+    if (storedItems) {
+      setItems(JSON.parse(storedItems));
+    }
+    if (storedMode) {
+      setMode(storedMode);
+    }
+  }, []);
 
-	// Notification
-	const [notification, setNotification] = useState(false);
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("mode", mode);
+  }, [items, mode]);
 
+  // Toggle Light and Dark Mode Function
+  function toggleMode() {
+    setMode(mode === "light" ? "dark" : "light");
+  }
 
-	// Tabbed Content pagination
-	const pagination = ["All", "Active", "Completed"];
-
-	// State to track tabbed content
-	const [currentTab, setCurrentTab] = useState(0);
-
-	// Local Storage
-	useEffect(() => {
-		const storedItems = localStorage.getItem('items');
-		const storedMode = localStorage.getItem('mode');
-		if (storedItems) {
-			setItems(JSON.parse(storedItems));
-		}
-		if (storedMode) {
-			setMode(storedMode);
-		}
-	}, []);
-
-	useEffect(
-		() => {
-			localStorage.setItem('items', JSON.stringify(items));
-			localStorage.setItem('mode', mode);
-		},
-		[items, mode]
-	);
-
-	// Toggle Light and Dark Mode Function
-	function toggleMode() {
-		setMode(mode === 'light' ? 'dark' : 'light');
-	}
-
-	return (
-		<section
-			id="section"
-			className={`flex flex-col  items-center h-[100%] px-6 
+  return (
+    <section
+      id="section"
+      className={`flex flex-col  items-center h-[100%] px-6 font-josefin pb-20
         	${mode} ${currentMode.body}`}
-		>
-			{/* Header */}
-			<Header mode={mode} toggleMode={toggleMode} />
-			{/* Form Container */}
-			<Form
-				currentMode={currentMode}
-				items={items}
-				setItems={setItems}
-				inputValue={inputValue}
-				setInputValue={setInputValue}
-				setNotification={setNotification}
-				setCurrentTab={setCurrentTab}
-			/>
-			{/* Todos Container */}
-			<Todos
-				mode={mode}
-				currentMode={currentMode}
-				items={items}
-				setItems={setItems}
-				setNotification={setNotification}
-				pagination={pagination}
-				currentTab={currentTab}
-				setCurrentTab={setCurrentTab}
-			/>
-			<Toaster position='top-center' richColors={true} invert={true} />
-		</section>
-	);
+    >
+      {/* Header */}
+      <Header mode={mode} toggleMode={toggleMode} />
+      {
+        currentPage === "signup" ? (
+          <Signup currentMode={currentMode} setCurrentPage={setCurrentPage}/>
+        ) : currentPage === "login" ? (
+            <Login currentMode={currentMode} setCurrentPage={setCurrentPage} />
+        ) : (
+          <Main
+            items={items}
+            mode={mode}
+            setItems={setItems}
+            currentMode={currentMode}
+          />
+        )
+      }
+
+      <Toaster position="top-center" richColors={true} invert={true} />
+    </section>
+  );
 };
 
-export default App
+export default App;
