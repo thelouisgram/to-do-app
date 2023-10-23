@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { iconCheck } from '../assets';
 import { nanoid } from 'nanoid';
 import { done } from '../assets';
+import { toast } from 'sonner';
 
 const Form = ({ currentMode, items, setItems, setCurrentTab,
-	 setInputValue, inputValue, setNotification, setNotificationMessage }) => {
+	setInputValue, inputValue, setNotification,}) => {
 	// useState for Form checkbox
 	const [complete, setComplete] = useState(false);
 
@@ -46,12 +47,12 @@ const Form = ({ currentMode, items, setItems, setCurrentTab,
 		}
 		event.preventDefault();
 		if (!inputValue) {
-			setNotificationMessage('Please enter a new Task!')
+			toast.error('Please enter a new Task!')
 			Refresh()
 			return;
 		}
 		else if (items.some((items) => items.text === newItem.text)) {
-			setNotificationMessage(`Task: "${newItem.text}" already exists!`)
+			toast.error(`Task: "${newItem.text}" already exists!`)
 			Refresh()
 			return;
 		}
@@ -59,7 +60,7 @@ const Form = ({ currentMode, items, setItems, setCurrentTab,
 			// updating items array
 			setItems([...items, newItem]);
 			setCurrentTab(0)
-			setNotificationMessage(`Task: "${newItem.text}" added successfully!`)
+			toast.success(`Task: "${newItem.text}" added successfully!`)
 			Refresh()
 		}
 	};

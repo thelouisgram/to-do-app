@@ -3,30 +3,28 @@ import Header from './components/header';
 import colors from './style';
 import Todos from './components/Todos';
 import Form from './components/Form';
-import Notification from './components/Notification';
+import { Toaster } from 'sonner';
 
 const App = () => {
 	// Light & Dark Mode state
-	const [ mode, setMode ] = useState('dark');
+	const [mode, setMode] = useState('dark');
 	const currentMode = colors[mode];
-	
+
 	// Todo Array
-	const [ items, setItems ] = useState([]);
+	const [items, setItems] = useState([]);
 
 	// Task form
-	const [ inputValue, setInputValue ] = useState('');
+	const [inputValue, setInputValue] = useState('');
 
 	// Notification
-	const [ notification, setNotification ] = useState(false);
+	const [notification, setNotification] = useState(false);
 
-	// Notification Message
-	const [ notificationMessage, setNotificationMessage ] = useState('');
 
 	// Tabbed Content pagination
 	const pagination = ["All", "Active", "Completed"];
 
 	// State to track tabbed content
-	const [ currentTab, setCurrentTab ] = useState(0);
+	const [currentTab, setCurrentTab] = useState(0);
 
 	// Local Storage
 	useEffect(() => {
@@ -45,7 +43,7 @@ const App = () => {
 			localStorage.setItem('items', JSON.stringify(items));
 			localStorage.setItem('mode', mode);
 		},
-		[ items, mode ]
+		[items, mode]
 	);
 
 	// Toggle Light and Dark Mode Function
@@ -57,7 +55,7 @@ const App = () => {
 		<section
 			id="section"
 			className={`flex flex-col  items-center h-[100%] px-6 
-        	${mode} ${currentMode.body}`} 
+        	${mode} ${currentMode.body}`}
 		>
 			{/* Header */}
 			<Header mode={mode} toggleMode={toggleMode} />
@@ -69,7 +67,6 @@ const App = () => {
 				inputValue={inputValue}
 				setInputValue={setInputValue}
 				setNotification={setNotification}
-				setNotificationMessage={setNotificationMessage}
 				setCurrentTab={setCurrentTab}
 			/>
 			{/* Todos Container */}
@@ -79,16 +76,11 @@ const App = () => {
 				items={items}
 				setItems={setItems}
 				setNotification={setNotification}
-				setNotificationMessage={setNotificationMessage}
 				pagination={pagination}
 				currentTab={currentTab}
 				setCurrentTab={setCurrentTab}
 			/>
-			{/* Notification Container */}
-			<Notification 
-				currentMode={currentMode} 
-				notificationMessage={notificationMessage}  
-				notification={notification}/>
+			<Toaster position='top-center' richColors={true} invert={true} />
 		</section>
 	);
 };

@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import AllTodos from './Tabs/AllTodos';
 import ActiveTodos from './Tabs/ActiveTodos';
 import CompletedTodos from './Tabs/CompletedTodos';
 import Tab from './Tab';
+import { toast } from 'sonner';
 
 const Todos = ({
-	currentMode, items, setItems, mode, setNotification, setNotificationMessage, 
-	currentTab, setCurrentTab, pagination}) => {
+	currentMode, items, setItems, mode, setNotification, 
+	currentTab, setCurrentTab, pagination }) => {
 
 	// function to change status of completed tasks
 	const handleComplete = (id) => {
@@ -26,7 +27,7 @@ const Todos = ({
 		setItems(incompleteList);
 		setCurrentTab(0);
 		setNotification(true);
-		setNotificationMessage('All completed Tasks cleared Successfully!');
+		toast.success('All completed Tasks cleared Successfully!');
 		setTimeout(() => {
 			setNotification(false);
 		}, 3000);
@@ -37,7 +38,7 @@ const Todos = ({
 		const deletedTodo = items.find(todo => todo.id === id);
 		setItems(items.filter((todo) => todo.id !== id));
 		setNotification(true);
-		setNotificationMessage(`Task "${deletedTodo.text}" deleted Successfully!`);
+		toast.success(`Task "${deletedTodo.text}" deleted Successfully!`);
 		setTimeout(() => {
 			setNotification(false);
 		}, 3000);
@@ -45,8 +46,8 @@ const Todos = ({
 
 
 	// For Tabbed Content
-	const [ checkedTodos, setCheckedTodos ] = useState([]);
-	const [ uncheckedTodos, setUncheckedTodos ] = useState([]);
+	const [checkedTodos, setCheckedTodos] = useState([]);
+	const [uncheckedTodos, setUncheckedTodos] = useState([]);
 
 	// Update Tabbed Content on change in items array
 	React.useEffect(
@@ -54,7 +55,7 @@ const Todos = ({
 			const checkedTodos = items.filter((item) => item.checked);
 			setCheckedTodos(checkedTodos);
 		},
-		[ items ]
+		[items]
 	);
 
 	React.useEffect(
@@ -62,18 +63,18 @@ const Todos = ({
 			const uncheckedTodos = items.filter((item) => !item.checked);
 			setUncheckedTodos(uncheckedTodos);
 		},
-		[ items ]
+		[items]
 	);
 
 	const tab = pagination.map((tab, index) => {
 		return (
 			<Tab
-				key={index} tab={tab} pagination={pagination} setCurrentTab={setCurrentTab} 
+				key={index} tab={tab} pagination={pagination} setCurrentTab={setCurrentTab}
 				index={index} mode={mode} currentMode={currentMode} currentTab={currentTab}
 			/>
 		);
 	});
-	
+
 
 	return (
 		<section className={`rounded-[5px] w-full ss:w-[520px] mb-[20px] `}>

@@ -39,6 +39,7 @@ input::selection {
   background-image: url(assets/bg-desktop-light.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position-x: center;
 }
 
 .dark{
@@ -46,6 +47,7 @@ input::selection {
   background-image: url(assets/bg-desktop-dark.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position-x: center;
 }
 
 @media (max-width:470px){
