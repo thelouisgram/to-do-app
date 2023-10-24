@@ -14,7 +14,7 @@ const Main = ({mode, currentMode, items, setItems}) => {
     const [currentTab, setCurrentTab] = useState(0);
 
     return (
-        <div className='w-full ss:w-[520px]'>
+        <div className='w-full ss:w-[520px] overflow-hidden'>
             <Form
                 currentMode={currentMode}
                 items={items}
