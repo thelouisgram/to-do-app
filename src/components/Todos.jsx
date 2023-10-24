@@ -106,7 +106,7 @@ const Todos = ({
           />
         )}
         <div
-          className={`px-6 py-4 
+          className={`px-4 ss:px-6 py-4 
 					font-josefin text-[15px]  justify-between items-center h-[50px] font-[500] flex`}
         >
           <div className={`${currentMode.cancel} `}>
@@ -142,7 +142,7 @@ const Todos = ({
       {/* Tabbed content buttons for mobile devices */}
       <div
         className={`ss:hidden flex rounded-[5px] w-full ss:w-[520px] mb-[30px] task-list ${currentMode.background}
-			px-6 py-4 font-josefin text-[15px] justify-center items-center h-[50px] font-[500]`}
+			px-4 ss:px-6 py-4 font-josefin text-[15px] justify-center items-center h-[50px] font-[500]`}
       >
         {tab}
       </div>
