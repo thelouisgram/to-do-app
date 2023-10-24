@@ -49,7 +49,7 @@ const App = () => {
   return (
     <section
       id="section"
-      className={`flex flex-col  items-center h-[100%] px-6 font-josefin pb-20 overscroll-y-none
+      className={`flex flex-col  items-center h-[100dvh] px-6 font-josefin pb-20 overscroll-y-none
         	${mode} ${currentMode.body}`}
     >
       {/* Header */}
