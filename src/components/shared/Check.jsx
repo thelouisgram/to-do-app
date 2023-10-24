@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { iconCheck } from '../assets';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { iconCheck } from '../../assets';
 
 const Check = ({ checked, currentMode, handleComplete }) => {
 	// CheckBox Design

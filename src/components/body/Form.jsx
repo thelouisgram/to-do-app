@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { iconCheck } from '../assets';
+import { iconCheck } from '../../assets';
 import { nanoid } from 'nanoid';
-import { done } from '../assets';
+import { done } from '../../assets';
 import { toast } from 'sonner';
 
 const Form = ({ currentMode, items, setItems, setCurrentTab,
-	setInputValue, inputValue, setNotification,}) => {
+	setInputValue, inputValue}) => {
 	// useState for Form checkbox
 	const [complete, setComplete] = useState(false);
 
@@ -30,10 +31,6 @@ const Form = ({ currentMode, items, setItems, setCurrentTab,
 
 
 	const Refresh = () => {
-		setNotification(true);
-		setTimeout(() => {
-			setNotification(false);
-		}, 3000);
 		setInputValue('');
 		setComplete(false)
 	}
@@ -75,13 +72,6 @@ const Form = ({ currentMode, items, setItems, setCurrentTab,
 		setInputValue(event.target.value);
 	};
 
-	// Submit with Enter key
-	const handleKeyPress = (event) => {
-		if (event.keyCode === 13) {
-			handleSubmit(event);
-		}
-	};
-
 	return (
 		<section
 			className={`flex flex-row justify-between mb-[20px] h-[70px] px-6 py-4 w-full items-center 
@@ -95,7 +85,6 @@ const Form = ({ currentMode, items, setItems, setCurrentTab,
 					className={`flex flex-1 text-[15px] ss:text-[18px] items-center
                     ${currentMode.text} ${currentMode.background} font-josefin`}
 					value={inputValue}
-					onKeyPress={handleKeyPress}
 					onChange={handleInputChange}
 				/>
 

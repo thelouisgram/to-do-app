@@ -1,5 +1,5 @@
 import React from 'react';
-import { moon, sun } from '../assets';
+import { moon, sun } from '../../assets';
 
 const Header = ({ mode, toggleMode }) => {
 	return (
