@@ -14,8 +14,7 @@ const Main = ({mode, currentMode, items, setItems}) => {
     const [currentTab, setCurrentTab] = useState(0);
 
     return (
-        <section>
-            
+        <div className='w-full ss:w-[520px]'>
             <Form
                 currentMode={currentMode}
                 items={items}
@@ -34,7 +33,7 @@ const Main = ({mode, currentMode, items, setItems}) => {
                 currentTab={currentTab}
                 setCurrentTab={setCurrentTab}
             />
-        </section>
+        </div>
     );
 };
 

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { supabase } from "../../../supabase";
 import { toast } from "sonner";
 
-const Signup = ({ currentMode, setCurrentPage }) => {
+const Signup = ({ currentMode, setCurrentPage, setUser }) => {
   const [details, setDetails] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -24,7 +24,7 @@ const Signup = ({ currentMode, setCurrentPage }) => {
     } else {
       toast.loading('Signing Up');
       try {
-        const { user, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email: details.email,
           password: details.password,
         });
@@ -32,7 +32,8 @@ const Signup = ({ currentMode, setCurrentPage }) => {
         if (error) {
           toast.error("Error signing up:" + error.message);
         } else {
-          toast.success("User signed up", user);
+          toast.success("User signed up");
+          setUser(data)
           setCurrentPage("main");
         }
       } catch (error) {
@@ -43,7 +44,7 @@ const Signup = ({ currentMode, setCurrentPage }) => {
 
   return (
     <div
-      className={`rounded-[15px] transition-all w-full ss:w-[520px] flex justify-center items-center flex-col h-auto font-josefin py-12 px-5 ss:px-10 ${currentMode.background} ${currentMode.text} shadow-lg`}
+      className={`rounded-[5px] transition-all w-full ss:w-[520px] flex justify-center items-center flex-col h-auto font-josefin py-16 px-5 ss:px-10 ${currentMode.background} ${currentMode.text} shadow-lg`}
     >
       <div className="w-full text-center mb-5">
         <h2 className="font-semibold text-[24px]">Welcome to <span className="font-bold font-sans">T O D O </span></h2>
@@ -70,7 +71,7 @@ const Signup = ({ currentMode, setCurrentPage }) => {
         >
           <i className={`fa-solid fa-lock ${currentMode.text}`}></i>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             className="bg-transparent w-full"
             onChange={handlePassword}

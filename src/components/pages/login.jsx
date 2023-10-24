@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { supabase } from "../../../supabase";
 import { toast } from "sonner";
 
-const Login = ({ currentMode, setCurrentPage }) => {
+const Login = ({ currentMode, setCurrentPage, setUser }) => {
   const [details, setDetails] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,7 +23,7 @@ const Login = ({ currentMode, setCurrentPage }) => {
     } else {
       toast.loading("Logging In");
       try {
-        const { user, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email: details.email,
           password: details.password,
         });
@@ -32,7 +32,7 @@ const Login = ({ currentMode, setCurrentPage }) => {
           toast.error("Error logging in: " + error.message);
         } else {
           toast.success("User logged in");
-          console.log(user);
+          setUser(data)
           setCurrentPage("main");
         }
       } catch (error) {
@@ -43,7 +43,7 @@ const Login = ({ currentMode, setCurrentPage }) => {
 
   return (
     <div
-      className={`rounded-[15px] transition-all w-full ss:w-[520px] flex justify-center items-center flex-col h-auto font-josefin py-12 px-5 ss:px-10 ${currentMode.background} ${currentMode.text} shadow-lg`}
+      className={`rounded-[5px] transition-all w-full ss:w-[520px] flex justify-center items-center flex-col h-auto font-josefin py-16 px-5 ss:px-10 ${currentMode.background} ${currentMode.text} shadow-lg`}
     >
       <div className="w-full text-center mb-5">
         <h2 className="font-semibold text-[24px]">Welcome Back </h2>

@@ -15,6 +15,7 @@ const App = () => {
 
   // Todo Array
   const [items, setItems] = useState([]);
+  const [user, setUser] = useState([])
 
   // Local Storage
   useEffect(() => {
@@ -29,6 +30,13 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    if (!user.length === 0) {
+      setCurrentPage("main");
+    }
+  }, [user]);
+
+
+  useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
     localStorage.setItem("mode", mode);
   }, [items, mode]);
@@ -41,16 +49,16 @@ const App = () => {
   return (
     <section
       id="section"
-      className={`flex flex-col  items-center h-[100%] px-6 font-josefin pb-20
+      className={`flex flex-col  items-center h-[100%] px-6 font-josefin pb-20 overscroll-y-none
         	${mode} ${currentMode.body}`}
     >
       {/* Header */}
       <Header mode={mode} toggleMode={toggleMode} />
       {
         currentPage === "signup" ? (
-          <Signup currentMode={currentMode} setCurrentPage={setCurrentPage}/>
+          <Signup currentMode={currentMode} setCurrentPage={setCurrentPage} setUser={setUser}/>
         ) : currentPage === "login" ? (
-            <Login currentMode={currentMode} setCurrentPage={setCurrentPage} />
+            <Login currentMode={currentMode} setCurrentPage={setCurrentPage} setUser={setUser} />
         ) : (
           <Main
             items={items}
