@@ -77,12 +77,13 @@ const Login = ({ currentMode, setCurrentPage, setUser }) => {
             value={details.password}
           />
         </div>
-        <div className="flex w-full gap-2 justify-start px-4 items-center">
+        <div className="flex w-full gap-2 justify-start px-3 items-center">
           <input
             type="checkbox"
             id="showPasswordCheckbox"
             checked={showPassword}
             onChange={() => setShowPassword(!showPassword)}
+            className={`border ${currentMode.border} h-4 w-4 text-blue-500 rounded appearance-none transition-all duration-200 ease-in-out checked:border-blue-500 checked:bg-blue-500 checked:text-white checked-opacity-100 custom-checkbox outline-none`}
           />
           <label htmlFor="showPasswordCheckbox">Show Password</label>
         </div>
