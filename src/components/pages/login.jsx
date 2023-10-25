@@ -31,12 +31,12 @@ const Login = ({ currentMode, setCurrentPage, setUser }) => {
         if (error) {
           toast.error("Error logging in: " + error.message);
         } else {
-          toast.success("User logged in");
+          toast.success("Logged In");
           setUser(data)
           setCurrentPage("main");
         }
       } catch (error) {
-        toast.error("Error signing up: ", error);
+        toast.error("Error signing up: " + error);
       }
     }
   };
@@ -66,26 +66,19 @@ const Login = ({ currentMode, setCurrentPage, setUser }) => {
           />
         </div>
         <div
-          className={`w-full flex items-center gap-3 ${currentMode.border} h-auto border rounded-[5px] py-2 px-4`}
+          className={`w-full flex items-center justify-between gap-3 ${currentMode.border} h-auto border rounded-[5px] py-2 px-4`}
         >
-          <i className={`fa-solid fa-lock ${currentMode.text}`}></i>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            className="bg-transparent w-full"
-            onChange={handlePassword}
-            value={details.password}
-          />
-        </div>
-        <div className="flex w-full gap-2 justify-start px-3 items-center">
-          <input
-            type="checkbox"
-            id="showPasswordCheckbox"
-            checked={showPassword}
-            onChange={() => setShowPassword(!showPassword)}
-            className={`border ${currentMode.border} h-4 w-4 text-blue-500 rounded appearance-none transition-all duration-200 ease-in-out checked:border-blue-500 checked:bg-blue-500 checked:text-white checked-opacity-100 custom-checkbox outline-none`}
-          />
-          <label htmlFor="showPasswordCheckbox">Show Password</label>
+          <div className="w-full items-center flex gap-2 ">
+            <i className={`fa-solid fa-lock ${currentMode.text}`}></i>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="bg-transparent w-full"
+              onChange={handlePassword}
+              value={details.password}
+            />
+          </div>
+          <i className={`fa-regular ${!showPassword ? "fa-eye" : "fa-eye-slash"}`} onClick={() => setShowPassword(!showPassword)}></i>
         </div>
         <button
           className={`p-2 w-full flex items-center justify-center ${currentMode.body} rounded-[5px] mt-5`}

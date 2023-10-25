@@ -20,6 +20,8 @@ const Todos = ({
     setItems(
       items.map((todo) => {
         if (todo.id === id) {
+          if(!todo.checked){
+          toast.success("Task: '" + todo.text + "' Completed")}
           return { ...todo, checked: !todo.checked };
         }
         return todo;
