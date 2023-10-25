@@ -78,7 +78,7 @@ const Login = ({ currentMode, setCurrentPage, setUser }) => {
               value={details.password}
             />
           </div>
-          <i className={`fa-regular ${!showPassword ? "fa-eye" : "fa-eye-slash"}`} onClick={() => setShowPassword(!showPassword)}></i>
+          <i className={`fa-regular ${!showPassword ? "fa-eye" : "fa-eye-slash"} cursor-pointer`} onClick={() => setShowPassword(!showPassword)}></i>
         </div>
         <button
           className={`p-2 w-full flex items-center justify-center ${currentMode.body} rounded-[5px] mt-5`}
