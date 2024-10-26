@@ -52,7 +52,7 @@ const App = () => {
             setItems={setItems}
             currentMode={currentMode}
           />
-      <Toaster position="top-center" richColors={true} invert={true} />
+      <Toaster position="top-center" richColors={true} invert={true} theme={mode} />
     </section>
   );
 };

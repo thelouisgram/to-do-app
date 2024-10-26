@@ -21,7 +21,7 @@ const Todos = ({
       items.map((todo) => {
         if (todo.id === id) {
           if(!todo.checked){
-          toast.success("Task: '" + todo.text + "' Completed")}
+            toast.success(todo.text.toUpperCase() + "' Completed")}
           return { ...todo, checked: !todo.checked };
         }
         return todo;
@@ -41,7 +41,7 @@ const Todos = ({
   const handleDelete = (id) => {
     const deletedTodo = items.find((todo) => todo.id === id);
     setItems(items.filter((todo) => todo.id !== id));
-    toast.success(`Task "${deletedTodo.text}" deleted Successfully!`);
+    toast.success(`${deletedTodo.text.toUpperCase() } deleted Successfully!`);
   };
 
   // For Tabbed Content
