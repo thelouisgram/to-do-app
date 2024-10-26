@@ -2,20 +2,15 @@ import React, { useState, useEffect } from "react";
 import colors from "./style";
 import { Toaster } from "sonner";
 import Header from "./components/body/header";
-import Login from "./components/pages/login";
-import Signup from "./components/pages/signup";
 import Main from "./components/pages/Main";
 
 const App = () => {
   // Light & Dark Mode state
   const [mode, setMode] = useState("dark");
-  // const [user, setUser] = useState(null);
-  const [currentPage, setCurrentPage] = useState("login");
   const currentMode = colors[mode];
 
   // Todo Array
   const [items, setItems] = useState([]);
-  const [user, setUser] = useState([])
 
   // Local Storage
   useEffect(() => {
@@ -29,11 +24,7 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (!user.length === 0) {
-      setCurrentPage("main");
-    }
-  }, [user]);
+ 
 
 
   useEffect(() => {
@@ -54,21 +45,13 @@ const App = () => {
     >
       {/* Header */}
       <Header mode={mode} toggleMode={toggleMode} />
-      {
-        currentPage === "signup" ? (
-          <Signup currentMode={currentMode} setCurrentPage={setCurrentPage} setUser={setUser}/>
-        ) : currentPage === "login" ? (
-            <Login currentMode={currentMode} setCurrentPage={setCurrentPage} setUser={setUser} />
-        ) : (
+      
           <Main
             items={items}
             mode={mode}
             setItems={setItems}
             currentMode={currentMode}
           />
-        )
-      }
-
       <Toaster position="top-center" richColors={true} invert={true} />
     </section>
   );
