@@ -55,14 +55,14 @@ const Form = ({
       Refresh();
       return;
     } else if (items.some((items) => items.text === newItem.text)) {
-      toast.error(`${newItem.text.toUpperCase()} already exists!`);
+      toast.error(`${newItem.text.toUpperCase()} Already Exists!`);
       Refresh();
       return;
     } else {
       // updating items array
       setItems([...items, newItem]);
       setCurrentTab(0);
-      toast.success(`${newItem.text.toUpperCase()} added!`);
+      toast.success(`${newItem.text.toUpperCase()} Added!`);
       Refresh();
     }
   };

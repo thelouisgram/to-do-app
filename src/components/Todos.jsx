@@ -21,7 +21,7 @@ const Todos = ({
       items.map((todo) => {
         if (todo.id === id) {
           if(!todo.checked){
-            toast.success(todo.text.toUpperCase() + "' Completed")}
+            toast.success(todo.text.toUpperCase() + " Completed")}
           return { ...todo, checked: !todo.checked };
         }
         return todo;
@@ -34,14 +34,14 @@ const Todos = ({
     const incompleteList = items.filter((todo) => todo.checked === false);
     setItems(incompleteList);
     setCurrentTab(0);
-    toast.success("All completed Tasks cleared Successfully!");
+    toast.success("All Completed Tasks cleared Successfully!");
   };
 
   // function to delete individual task
   const handleDelete = (id) => {
     const deletedTodo = items.find((todo) => todo.id === id);
     setItems(items.filter((todo) => todo.id !== id));
-    toast.success(`${deletedTodo.text.toUpperCase() } deleted Successfully!`);
+    toast.success(`${deletedTodo.text.toUpperCase() } Deleted Successfully!`);
   };
 
   // For Tabbed Content
